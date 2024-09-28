@@ -9,7 +9,7 @@ const port = 3001;
 app.use(cors());
 
 // Connect to SQLite database
-const db = new sqlite3.Database('./path-to-your-database/mydatabase.db', (err) => {
+const db = new sqlite3.Database('./C:/Program Files/SQLiteStudio/mydatabase.db', (err) => {
     if (err) {
         console.error('Error opening database:', err.message);
     } else {
@@ -19,7 +19,7 @@ const db = new sqlite3.Database('./path-to-your-database/mydatabase.db', (err) =
 
 // Get all users (example endpoint)
 app.get('/users', (req, res) => {
-    const sql = 'SELECT * FROM users';
+    const sql = 'SELECT * FROM test_table';
     db.all(sql, [], (err, rows) => {
         if (err) {
             res.status(400).json({ "error": err.message });
