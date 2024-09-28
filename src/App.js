@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [data, setData] = useState([]);
+
+    // Fetch the data when the component mounts
+    useEffect(() => {
+        axios.get('http://localhost:3001/testdata')
+            .then((response) => {
+                setData(response.data.data); // Update state with the data from test_table
+            })
+            .catch((error) => {
+                console.error("There was an error fetching the data!", error);
+            });
+    }, []);
+
+    return (
+        <div>
+            <h1>Data from test_table</h1>
+            <ul>
+                {data.map((item, index) => (
+                    <li key={index}>
+                        {Object.values(item).join(' - ')}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
 export default App;
