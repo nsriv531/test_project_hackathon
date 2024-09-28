@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
+
 import axios from 'axios';
 
 const App = () => {
@@ -15,6 +17,12 @@ const App = () => {
             });
     }, []);
 
+    // Function to handle "Create an Account" button click
+    const handleCreateAccount = () => {
+        console.log("Create Account button clicked");
+        // Here, you can redirect the user to the account creation page or open a modal, etc.
+    };
+
     return (
         <div>
             <h1>Data from test_table</h1>
@@ -25,6 +33,8 @@ const App = () => {
                     </li>
                 ))}
             </ul>
+            {/* Create an Account Button */}
+            <button onClick={handleCreateAccount}>Create an Account</button>
         </div>
     );
 };
